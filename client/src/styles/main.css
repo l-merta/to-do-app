@@ -1,15 +1,56 @@
 .main-task {
+  background-color: var(--c-bg-1);
   width: calc(100vw - var(--nav-width));
   height: 100vh;
   margin-left: var(--nav-width);
 }
 
 .nav-main {
-  background-color: #fff;
+  background-color: var(--c-bg-4);
   width: var(--nav-width);
   height: 100vh;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid var(--c-bg-2);
   position: fixed;
   top: 0;
   left: 0;
+}
+
+.task-list {
+  background-color: var(--c-bg-1);
+  min-width: 16rem;
+  border: 1px solid var(--c-bg-2);
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+.task-list .label {
+  background-color: var(--c-main-1);
+  width: 100%;
+  padding: 0.5rem 0.8rem;
+  padding-left: 1.45rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.task-list .label .list-label {
+  font: 500 0.8rem var(--f1) !important;
+}
+.task-list .handle {
+  background: transparent;
+  width: 0.6rem;
+  height: 0.6rem;
+  border: 0.1rem solid var(--c-bg-3);
+  border-radius: 5rem;
+  cursor: pointer !important;
+}
+.task-list .handle-source {
+  width: 0.55rem;
+  height: 0.55rem;
+}
+.task-list .handle-left {
+  left: 0.45rem;
+}
+.task-list .handle-right {
+  right: 0.45rem;
 }/*# sourceMappingURL=main.css.map */

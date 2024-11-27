@@ -19,7 +19,7 @@ const initialNodes = [
     id: '1',
     type: 'list',
     position: { x: 100, y: 100 },
-    data: { label: 'Task Node 1', items: ['Task A', 'Task B', 'Task C'] },
+    data: { label: 'Task Node 1', items: ['Task A'] },
   },
   {
     id: '2',
