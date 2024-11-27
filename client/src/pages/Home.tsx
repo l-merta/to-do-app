@@ -7,7 +7,7 @@ function Home() {
   return (
     <>
       <h1>Loopy home page</h1>
-      <Link to="/task">Task</Link>
+      <Link to="/task/id">Task</Link>
     </>
   )
 }
