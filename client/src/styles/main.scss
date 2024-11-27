@@ -1,0 +1,14 @@
+.main-task {
+  width: calc(100vw - var(--nav-width));
+  height: 100vh;
+  margin-left: var(--nav-width);
+}
+.nav-main {
+  background-color: #fff;
+  width: var(--nav-width);
+  height: 100vh;
+  border-right: 1px solid #ddd;
+  position: fixed;
+  top: 0;
+  left: 0;
+}

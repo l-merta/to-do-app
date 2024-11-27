@@ -8,6 +8,7 @@ import ReactFlow, {
   useEdgesState,
 } from 'reactflow';
 
+import Navbar from './../components/Navbar';
 import TaskListNode from './../components/TaskListNode'; // Import the custom node
 
 import 'reactflow/dist/style.css';
@@ -68,7 +69,9 @@ const Task:React.FC = () => {
   
 
   return (
-    <div style={{ width: '100vw', height: '100vh' }}>
+    <>
+    <Navbar />
+    <main className="main-task">
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -82,7 +85,8 @@ const Task:React.FC = () => {
         <Background />
         <Controls />
       </ReactFlow>
-    </div>
+    </main>
+    </>
   );
 }
 

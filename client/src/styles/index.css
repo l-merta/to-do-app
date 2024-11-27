@@ -1,6 +1,9 @@
+:root {
+  --nav-width: 15rem;
+}
 body {
-    margin: 0;
+  margin: 0;
 }
 body * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
