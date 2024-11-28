@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactFlow, {
   Background,
   Controls,
@@ -11,55 +11,51 @@ import ReactFlow, {
 
 import Navbar from './../components/Navbar';
 import TaskListNode from './../components/TaskListNode';
-import BasicEdge from './../components/BasicEdge'
+import BasicEdge from './../components/BasicEdge';
 
 import 'reactflow/dist/style.css';
-
-// Define initial nodes and edges
-const initialNodes = [
-  {
-    id: '1',
-    type: 'list',
-    position: { x: 100, y: 100 },
-    data: { label: 'Task Node 1', items: ['Task A'] },
-  },
-  {
-    id: '2',
-    type: 'list',
-    position: { x: 400, y: 100 },
-    data: { label: 'Task Node 2', items: ['Task X', 'Task Y', 'Task Z'] },
-  },
-];
-
-// Initial edges setup
-const initialEdges: Edge[] = [
-  {
-    id: 'e1-2',  // Edge ID
-    source: '1',  // Source node ID
-    target: '2',  // Target node ID
-    sourceHandle: '1-item-0-source',  // Source handle ID
-    targetHandle: '2-target',  // Target handle ID
-  },
-];
 
 const nodeTypes = { list: TaskListNode };
 const edgeTypes = { basic: BasicEdge };
 
 const Task: React.FC = () => {
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [draggingHandle, setDraggingHandle] = React.useState<string | null>(null);
   const [hoveredHandle, setHoveredHandle] = React.useState<string | null>(null);
-  
-  // Initialize connectedHandles with handles from initial edges, filtering out null and undefined
-  const initialConnectedHandles = new Set(
-    initialEdges
-      .flatMap((edge) => [edge.sourceHandle, edge.targetHandle])
-      .filter((handle): handle is string => typeof handle === 'string') // Ensure only strings are added
-  );
+  const [connectedHandles, setConnectedHandles] = React.useState<Set<string>>(new Set());
 
-  const [connectedHandles, setConnectedHandles] = React.useState<Set<string>>(initialConnectedHandles);
+  // Fetch nodes and edges from JSON files
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const nodesResponse = await fetch('/test/nodes.json');
+        const edgesResponse = await fetch('/test/edges.json');
+
+        if (!nodesResponse.ok || !edgesResponse.ok) {
+          throw new Error('Failed to fetch data');
+        }
+
+        const nodesData = await nodesResponse.json();
+        const edgesData = await edgesResponse.json();
+
+        setNodes(nodesData);
+        setEdges(edgesData);
+
+        // Initialize connectedHandles from fetched edges
+        const initialHandles: any = new Set(
+          edgesData
+            .flatMap((edge: Edge) => [edge.sourceHandle, edge.targetHandle])
+            .filter((handle: any): handle is string => typeof handle === 'string')
+        );
+        setConnectedHandles(initialHandles);
+      } catch (error) {
+        console.error('Error fetching nodes or edges:', error);
+      }
+    };
+
+    fetchData();
+  }, []); // Runs only once on mount
 
   const onConnectStart = (_: any, params: OnConnectStartParams) => {
     const { handleId } = params;
@@ -87,19 +83,17 @@ const Task: React.FC = () => {
       return;
     }
 
-    // Prevent invalid connections (e.g., same source/target handle pairings)
+    // Prevent invalid connections
     if (!sourceHandle || !targetHandle) {
       console.warn('Invalid connection handles.');
       return;
     }
 
-    // Log successful connections for debugging
+    // Log successful connections
     console.log('Connected:', { source, target, sourceHandle, targetHandle });
 
-    // Update edges with a new connection
+    // Update edges and connectedHandles
     setEdges((eds) => addEdge(params, eds));
-
-    // Update connectedHandles state with new connections
     setConnectedHandles((prev) => new Set(prev).add(sourceHandle).add(targetHandle));
 
     // Reset dragging handle after a successful connection

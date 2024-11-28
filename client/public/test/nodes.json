@@ -1,0 +1,15 @@
+[
+    {
+      "id": "1",
+      "type": "list",
+      "position": { "x": 100, "y": 100 },
+      "data": { "label": "Task Node 1", "items": ["Task A"] }
+    },
+    {
+      "id": "2",
+      "type": "list",
+      "position": { "x": 400, "y": 100 },
+      "data": { "label": "Task Node 2", "items": ["Task X", "Task Y", "Task Z"] }
+    }
+  ]
+  
