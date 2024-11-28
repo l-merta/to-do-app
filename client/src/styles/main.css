@@ -18,11 +18,11 @@
 .task-list {
   background-color: var(--c-bg-1);
   min-width: 16rem;
-  border: 1px solid var(--c-bg-2);
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   position: relative;
   overflow: hidden;
   cursor: default;
+  --border-radius: 0.4rem;
 }
 .task-list .label {
   background-color: var(--c-main-1);
@@ -36,21 +36,82 @@
 .task-list .label .list-label {
   font: 500 0.8rem var(--f1) !important;
 }
+.task-list .list {
+  padding: 0;
+  display: flex;
+  align-items: start;
+  border: 1px solid var(--c-bg-2);
+  border-top-width: 0;
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+.task-list .list ul {
+  margin: 0;
+  padding: 0;
+}
+.task-list .list .count-cont {
+  list-style-type: none;
+}
+.task-list .list .count-cont .count {
+  opacity: 0.6;
+  font: 600 0.5rem var(--f1);
+  height: 1.8rem;
+  width: 1.6rem;
+  padding-left: 0.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.task-list .list .tasks-cont {
+  width: 100%;
+  list-style-type: none;
+}
+.task-list .list .tasks-cont .task {
+  font: 400 0.75rem var(--f1);
+  height: 1.8rem;
+  padding: 0rem 0.6rem;
+  padding-left: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
 .task-list .handle {
   background: transparent;
-  width: 0.6rem;
-  height: 0.6rem;
+  width: 0.5rem;
+  height: 0.5rem;
   border: 0.1rem solid var(--c-bg-3);
   border-radius: 5rem;
+  transition: 0.12s;
   cursor: pointer !important;
 }
+.task-list .handle-dragging {
+  background-color: var(--c-bg-3);
+  border-color: transparent;
+}
 .task-list .handle-source {
-  width: 0.55rem;
-  height: 0.55rem;
+  aspect-ratio: 1/1;
+  width: 0.38rem;
+  height: 0.38rem;
 }
 .task-list .handle-left {
-  left: 0.45rem;
+  left: 0.55rem;
 }
 .task-list .handle-right {
   right: 0.45rem;
+}
+
+/* Custom edge styles */
+.react-flow__edge {
+  color: blue !important;
+  background-color: blue !important;
+  stroke: #3498db !important; /* Change color */
+  stroke-width: 5px !important; /* Adjust thickness */
+  fill: none; /* Remove fill if you don't want the edge to have any background */
+  stroke-dasharray: 5, 5; /* Make the edges dashed if needed */
+  transition: stroke 0.3s ease; /* Smooth transition for hover effects */
+}
+
+/* Add hover effect on edges */
+.react-flow__edge:hover {
+  stroke: #e74c3c; /* Change color on hover */
 }/*# sourceMappingURL=main.css.map */

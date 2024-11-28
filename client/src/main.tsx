@@ -5,15 +5,15 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './styles/index.css';
 import './styles/main.css';
 
-import Home from './pages/Home.tsx';
-import Task from './pages/Task.tsx';
+import HomePage from './pages/HomePage.tsx';
+import TaskPage from './pages/TaskPage.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/task/:taskId" element={<Task />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/task/:taskId" element={<TaskPage />} />
       </Routes>
     </Router>
   </StrictMode>,
