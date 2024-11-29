@@ -13,6 +13,7 @@ const TaskItem = ({ data, item, index, id }: any) => {
 
     return (
         <li key={index} className="task">
+            <span className="task-count">{index + 1}.</span>
             <input type="checkbox" defaultChecked={item.completed} name="" id="" />
             <span className="task-label">{item.label}</span>
             <Handle

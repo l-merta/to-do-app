@@ -33,20 +33,11 @@ const TaskListNode = ({ data, id }: any) => {
         />
         <span className="list-label">{data.label}</span>
       </div>
-      <div className="list">
-        <ul className="count-cont">
-          {data.items.map((item: TaskItemProps, index: number) => (
-            <li key={index} className="count">
-              <span className="task-count">{index + 1}.</span>
-            </li>
-          ))}
-        </ul>
-        <ul className="tasks-cont">
-          {data.items.map((item: TaskItemProps, index: number) => (
-            <TaskItem data={data} item={item} index={index} id={id} />
-          ))}
-        </ul>
-      </div>
+      <ul className="list">
+        {data.items.map((item: TaskItemProps, index: number) => (
+          <TaskItem data={data} item={item} index={index} id={id} />
+        ))}
+      </ul>
     </div>
   );
 };
