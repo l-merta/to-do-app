@@ -1,5 +1,12 @@
 import { Handle, Position } from 'reactflow';
 
+import TaskItem from './TaskItem';
+
+interface TaskItemProps {
+  label: string;
+  completed: boolean;
+}
+
 const TaskListNode = ({ data, id }: any) => {
   const { draggingHandle, hoveredHandle, connectedHandles, setHoveredHandle } = data;
 
@@ -28,27 +35,15 @@ const TaskListNode = ({ data, id }: any) => {
       </div>
       <div className="list">
         <ul className="count-cont">
-          {data.items.map((item: string, index: number) => (
+          {data.items.map((item: TaskItemProps, index: number) => (
             <li key={index} className="count">
               <span className="task-count">{index + 1}.</span>
             </li>
           ))}
         </ul>
         <ul className="tasks-cont">
-          {data.items.map((item: string, index: number) => (
-            <li key={index} className="task">
-              <span className="task-label">{item}</span>
-              <Handle
-                className={`handle handle-source handle-right ${
-                  isHandleActive(`${id}-item-${index}-source`) ? 'handle-dragging' : ''
-                }`}
-                type="source"
-                position={Position.Right}
-                id={`${id}-item-${index}-source`}
-                onMouseEnter={() => setHoveredHandle(`${id}-item-${index}-source`)}
-                onMouseLeave={() => setHoveredHandle(null)}
-              />
-            </li>
+          {data.items.map((item: TaskItemProps, index: number) => (
+            <TaskItem data={data} item={item} index={index} id={id} />
           ))}
         </ul>
       </div>

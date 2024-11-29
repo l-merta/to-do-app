@@ -3,13 +3,24 @@
       "id": "1",
       "type": "list",
       "position": { "x": 100, "y": 100 },
-      "data": { "label": "Task Node 1", "items": ["Task A"] }
+      "main": true,
+      "data": { "label": "Hlavní seznam", "items": [
+        {
+          "label": "Úkol 1 - jít se vyprdět",
+          "completed": true
+        }
+      ] }
     },
     {
       "id": "2",
       "type": "list",
       "position": { "x": 400, "y": 100 },
-      "data": { "label": "Task Node 2", "items": ["Task X", "Task Y", "Task Z"] }
+      "data": { "label": "Podseznam", "items": [
+        {
+          "label": "Úkol 2 - prdět hodně",
+          "completed": false
+        }
+      ] }
     }
   ]
   
