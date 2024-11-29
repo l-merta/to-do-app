@@ -7,18 +7,23 @@
       "data": { "label": "Hlavní seznam", "items": [
         {
           "label": "Úkol 1 - jít se vyprdět",
-          "completed": true
+          "completed": false
         }
       ] }
     },
     {
       "id": "2",
       "type": "list",
+      "main": false,
       "position": { "x": 400, "y": 100 },
       "data": { "label": "Podseznam", "items": [
         {
           "label": "Úkol 2 - prdět hodně",
           "completed": false
+        },
+        {
+          "label": "Úkol 3 - prdět ještě víc",
+          "completed": true
         }
       ] }
     }

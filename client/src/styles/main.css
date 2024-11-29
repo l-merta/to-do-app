@@ -41,7 +41,8 @@
   margin: 0;
   padding: 0;
   display: flex;
-  align-items: start;
+  flex-direction: column;
+  justify-content: start;
   border: 1px solid var(--c-bg-2);
   border-top-width: 0;
   border-bottom-left-radius: var(--border-radius);
