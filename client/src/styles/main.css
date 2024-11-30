@@ -59,8 +59,16 @@
   width: 100%;
   border-radius: var(--padding);
   padding: var(--padding) calc(var(--padding) * 1.5);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   text-decoration: none;
   transition: 0.15s;
+}
+.nav-main .links .link i {
+  width: 1.5rem;
+  scale: 1;
+  text-align: center;
 }
 .nav-main .links .link:hover {
   background-color: var(--c-bg-5);

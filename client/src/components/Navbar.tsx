@@ -1,5 +1,6 @@
 //import React from 'react'
-import { Link } from "react-router-dom";
+
+import NavbarLink from './NavbarLink';
 
 const Navbar = () => {
   return (
@@ -10,11 +11,10 @@ const Navbar = () => {
       </div>
       <div className="line"></div>
       <div className="links">
-        <Link to="/" className="link link-profile">Profil</Link>
-        <Link to="/" className="link">
-          <i className="fa-solid fa-house"></i>
-          <span>Domů</span>
-        </Link>
+        <NavbarLink link="/" icon="fa-solid fa-user" iconHover="fa-regular fa-user">Profil</NavbarLink>
+        <NavbarLink link="/" icon="fa-solid fa-house" iconHover="fa-regular fa-house">Domů</NavbarLink>
+        <NavbarLink link="/" icon="fa-regular fa-list-dropdown" iconHover="fa-light fa-list-dropdown">Seznamy</NavbarLink>
+        <NavbarLink link="/" icon="fa-solid fa-gear" iconHover="fa-regular fa-gear">Nastavení</NavbarLink>
       </div>
     </nav>
   )
