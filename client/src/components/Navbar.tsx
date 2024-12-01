@@ -15,6 +15,7 @@ const Navbar = () => {
         <NavbarLink link="/" icon="fa-solid fa-house" iconHover="fa-regular fa-house">Domů</NavbarLink>
         <NavbarLink link="/" icon="fa-regular fa-list-dropdown" iconHover="fa-light fa-list-dropdown">Seznamy</NavbarLink>
         <NavbarLink link="/" icon="fa-solid fa-gear" iconHover="fa-regular fa-gear">Nastavení</NavbarLink>
+        <NavbarLink link="/sign-in" icon="fa-solid fa-right-from-bracket" iconHover="fa-regular fa-right-from-bracket">Odhlásit se</NavbarLink>
       </div>
     </nav>
   )
