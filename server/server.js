@@ -1,5 +1,10 @@
-const express = require("express");
+require('dotenv').config();
+const express = require('express');
+const session = require('express-session');
 const cors = require('cors');
+const passport = require('passport');
+const authRoutes = require('./routes/authRoutes');
+const { sequelize } = require('./config/db');
 
 const app = express();
 const PORT = process.env.PORT || 5200;
@@ -7,15 +12,34 @@ const PORT = process.env.PORT || 5200;
 // Use CORS middleware
 app.use(cors());
 
-// Slouží statické soubory z Reactu
+// Serve static files from React's build
 app.use(express.static("public"));
 
-// API route, která vrací JSON objekt
+// Session middleware (should be added before passport.session())
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || 'default_secret', // Ensure this is set in production
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Routes
+app.use('/auth', authRoutes);
+
+// Connect to database
+sequelize.sync().then(() => console.log('Database connected'));
+
+// API route returning JSON object
 app.get("/api", (req, res) => {
   res.json({ "api": "Hello World" });
 });
 
-// Obsluhuje všechny ostatní cesty a vrací hlavní HTML soubor
+// Serve the main HTML file for any non-API routes
 app.get("*", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
