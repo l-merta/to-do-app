@@ -3,6 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const cors = require('cors');
 const passport = require('passport');
+require('./config/passport.js');
 const authRoutes = require('./routes/authRoutes');
 const { sequelize } = require('./config/db');
 
