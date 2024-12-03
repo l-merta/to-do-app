@@ -6,6 +6,9 @@ const passport = require('passport');
 require('./config/passport.js');
 const authRoutes = require('./routes/authRoutes');
 const { sequelize } = require('./config/db');
+const ensureAuthenticated = require('./middlewares/authMiddleware.js');
+const router = express.Router();
+
 
 const app = express();
 const PORT = process.env.PORT || 5200;
@@ -34,6 +37,12 @@ app.use('/auth', authRoutes);
 
 // Connect to database
 sequelize.sync().then(() => console.log('Database connected'));
+
+/*
+router.get('/', ensureAuthenticated, (req, res) => {
+  res.send('Welcome to your dashboard!');
+});
+*/
 
 // API route returning JSON object
 app.get("/api", (req, res) => {
