@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import './styles/index.css';
 import './styles/main.css';
+import './styles/login.css';
 
 import HomePage from './pages/HomePage.tsx';
 import TaskPage from './pages/TaskPage.tsx';
